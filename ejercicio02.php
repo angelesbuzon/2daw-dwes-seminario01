@@ -1,26 +1,19 @@
 <?php 
+
 # Ejercicio 2. Sumatoria de un array
 # Crea una función que obtenga la sumatoria de un array de números.
 
+include "./includes/funciones_comunes.php";
+
 $numbers = [];
-$n;
-$isPrompting = true;
 
-do {
-    $n = readline("Introduce un número cualquiera (o 0 para parar el bucle): ");
-
-    if (!is_numeric($n)) {
-        echo "ERROR: Solo puedes introducir números (usa punto en vez de coma para decimales).\n";
-    } else if ($n == 0) {
-        $isPrompting = false;
-    } else {
-        # https://www.geeksforgeeks.org/php/how-to-add-elements-to-the-end-of-an-array-in-php/
-        array_push($numbers, $n);
-    }
-
-} while ($isPrompting);
+promptNumbers($numbers);
 
 echo "La sumatoria de esos números es " . sum($numbers) . "\n";
+
+# ---------------------
+# Funciones específicas
+# ---------------------
 
 function sum($array) {
     $sum = 0;

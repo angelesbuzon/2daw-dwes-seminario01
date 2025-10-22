@@ -1,6 +1,7 @@
 <?php
 
-function promptNumbers($numbers) {
+function promptNumbers(&$numbers) {
+    # & === se modifica ese mismo array, no una copia específica de la función
     $n;
     $isPrompting = true;
 

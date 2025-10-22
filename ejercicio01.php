@@ -1,11 +1,22 @@
 <?php
+
 # Ejercicio 1. Número máximo de un array
 # Crea una función que obtenga el número máximo de un array de números.
 
-include "funciones_comunes.php";
+include "./includes/funciones_comunes.php";
+
+$numbers = [];
+
+promptNumbers($numbers);
+
+echo "El numero máximo es " . findMaxNumber($numbers) . "\n";
+
+# ---------------------
+# Funciones específicas
+# ---------------------
 
 function findMaxNumber($array) {
-    $maxNumber = $_GET[$array[0]] ?? 999;
+    $maxNumber = $array[0];
 
     for ($i = 1; $i < count($array); $i++) {
         if ($array[$i] > $maxNumber) {
@@ -15,13 +26,5 @@ function findMaxNumber($array) {
 
     return $maxNumber;
 }
-
-$numbers = [];
-
-promptNumbers($numbers);
-
-echo "El numero máximo es " . findMaxNumber($numbers) . "\n";
-
-
 
 ?>
