@@ -3,7 +3,7 @@
 # Ejercicio 1. Número máximo de un array
 # Crea una función que obtenga el número máximo de un array de números.
 
-include "./includes/funciones_comunes.php";
+include "./includes/funciones.php";
 
 $numbers = [];
 

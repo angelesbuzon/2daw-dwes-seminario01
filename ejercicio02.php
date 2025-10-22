@@ -3,7 +3,7 @@
 # Ejercicio 2. Sumatoria de un array
 # Crea una función que obtenga la sumatoria de un array de números.
 
-include "./includes/funciones_comunes.php";
+include "./includes/funciones.php";
 
 $numbers = [];
 
