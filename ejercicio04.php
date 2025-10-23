@@ -5,11 +5,12 @@
 # Un palíndromo es una palabra o frase que se lee igual de izquierda a derecha
 # que de derecha a izquierda ("ana", "reconocer", "anilina").
 
+include "./includes/funciones.php";
+
 $word = "";
 
 do {
-    $word = readline("Introduce una palabra o frase: ");
-
+    $word = promptString();
     if (strlen($word) < 3) echo "ERROR: Tiene que tener 3 caracteres como mínimo.\n";
 } while (strlen($word) < 3);
 

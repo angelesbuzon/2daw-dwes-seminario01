@@ -28,5 +28,14 @@ function promptNumbers(&$numbers) {
     } while ($isPrompting);
 }
 
+function promptString() {
+    $str = "";
+    do {
+        $str = readline("Introduce una palabra o frase: ");
+    } while (is_null($str));
+
+    return $str;
+}
+
 
 ?>
