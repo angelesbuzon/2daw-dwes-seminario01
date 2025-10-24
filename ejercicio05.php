@@ -5,28 +5,30 @@
 
 include "./includes/funciones.php";
 
-$character = promptChar();
+$letter = promptLetter();
 $text = promptString();
 $cases = promptCaseSensitivity();
-$characterOcurrences = countChar($character, $text, $cases);
+$letterOcurrences = countChar($letter, $text, $cases);
 
-echo "El carácter \"" . $character . "\" aparece en el texto " . $characterOcurrences . " veces.\n";
+echo "La letra \"" . $letter . "\" aparece en el texto " . $letterOcurrences . " veces.\n";
 
 # ---------------------
 # Funciones específicas
 # ---------------------
 
-function promptChar() {
+function promptLetter() {
     $char = "";
     $charIsValid = false;
 
     do {
-        $char = readline("Introduce el carácter que quieres buscar en el texto: ");
+        $char = readline("Introduce la letra que quieres buscar en el texto: ");
         
         if ($char === "") {
             echo "ERROR: No puede estar vacío.\n";
+        } else if (!IntlChar::isalpha($char)) { # https://www.php.net/manual/en/intlchar.isalpha.php
+            echo "ERROR: Tiene que ser un carácter alfabético.\n";
         } else if (strlen($char) > 1) {
-            echo "ERROR: Tiene que ser un solo carácter.\n";
+            echo "ERROR: Tiene que ser una sola letra.\n";
         } else {
             $charIsValid = true;
         }
@@ -43,7 +45,7 @@ function promptCaseSensitivity() {
         $caseSensitivity = readline("¿Quieres distinguir entre minúsculas y mayúsculas? [1 = Sí, 0 = No]: ");
 
         if ($caseSensitivity != 0 && $caseSensitivity != 1) {
-            echo "ERROR: Pon 1 o 0.\n";
+            echo "ERROR: Soy un robot, bip-bup; pon 1 o 0.\n";
         } else if ($caseSensitivity == 1) {
             $wantsCaseSensitivity = true;
         } else {
