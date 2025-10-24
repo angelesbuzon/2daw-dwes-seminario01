@@ -25,9 +25,13 @@ function promptLetter() {
         
         if ($char === "") {
             echo "ERROR: No puede estar vacío.\n";
-        } else if (!IntlChar::isalpha($char)) { # https://www.php.net/manual/en/intlchar.isalpha.php
+        } else if (!isSpanishLetter($char)) {
             echo "ERROR: Tiene que ser un carácter alfabético.\n";
-        } else if (strlen($char) > 1) {
+        } else if (mb_strlen($char, "UTF-8") > 1) {
+            /*
+             * https://www.php.net/manual/en/function.mb-strlen.php
+             * El strlen() normal da problemas con caracteres especiales porque lo que mira es el número de bytes.
+             */
             echo "ERROR: Tiene que ser una sola letra.\n";
         } else {
             $charIsValid = true;
@@ -35,6 +39,24 @@ function promptLetter() {
     } while (!$charIsValid);
 
     return $char;
+}
+
+function isSpanishLetter(string $letter) {
+    /*
+     * strtolower() normal no incluye caracteres especiales, mb_strtolower() sí especificándole la codificación
+     * https://www.php.net/manual/es/function.mb-strtolower.php
+     * 
+     * ctype_alpha() tampoco los incluye
+     * https://www.php.net/manual/en/function.ctype-alpha.php
+     */
+
+    $letter = mb_strtolower($letter, "UTF-8");
+
+    if (!(ctype_alpha($letter) || strtolower($char) == ("ñ"||"á"||"é"||"í"||"ó"||"ú"||"ü"))) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function promptCaseSensitivity() {
