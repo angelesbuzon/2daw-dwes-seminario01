@@ -2,37 +2,38 @@
 
 # Ejercicio 5. Contar ocurrencias de una letra
 # Crea una función que cuente cuántas veces aparece una letra en un texto.
+#
+# Nota: Esta versión del ejercicio es muy sencilla y no tiene en cuenta caracteres especiales del español u otros idiomas.
+# Para tener esos en cuenta, necesitaría métodos especiales que requieren instalar extensiones o librerías; no quería complicarme demasiado aún.
+# https://www.php.net/manual/en/function.mb-strlen.php
+# https://www.php.net/manual/es/function.mb-strtolower.php
 
 include "./includes/funciones.php";
 
-$letter = promptLetter();
+$letter = promptLetter("Introduce la letra latina que quieres buscar en el texto: ");
 $text = promptString();
 $cases = promptCaseSensitivity();
 $letterOcurrences = countChar($letter, $text, $cases);
 
-echo "La letra \"" . $letter . "\" aparece en el texto " . $letterOcurrences . " veces.\n";
+echo "Veces que aparece la letra \"" . $letter . "\" en el texto: " . $letterOcurrences . ".\n";
 
 # ---------------------
 # Funciones específicas
 # ---------------------
 
-function promptLetter() {
+function promptLetter(string $mensaje): string {
     $char = "";
     $charIsValid = false;
 
     do {
-        $char = readline("Introduce la letra que quieres buscar en el texto: ");
+        $char = readline($mensaje);
+        var_dump($char);
         
         if ($char === "") {
             echo "ERROR: No puede estar vacío.\n";
-        } else if (!isSpanishLetter($char)) {
-            echo "ERROR: Tiene que ser un carácter alfabético.\n";
-        } else if (mb_strlen($char, "UTF-8") > 1) {
-            /*
-             * https://www.php.net/manual/en/function.mb-strlen.php
-             * El strlen() normal da problemas con caracteres especiales porque lo que mira es el número de bytes.
-             */
-            echo "ERROR: Tiene que ser una sola letra.\n";
+        } else if (!ctype_alpha($char) || strlen($char) > 1) {
+            # https://www.php.net/manual/es/function.ctype-alpha.php
+            echo "ERROR: Tiene que ser un solo carácter alfabético.\n";
         } else {
             $charIsValid = true;
         }
@@ -41,27 +42,8 @@ function promptLetter() {
     return $char;
 }
 
-function isSpanishLetter(string $letter) {
-    /*
-     * strtolower() normal no incluye caracteres especiales, mb_strtolower() sí especificándole la codificación
-     * https://www.php.net/manual/es/function.mb-strtolower.php
-     * 
-     * ctype_alpha() tampoco los incluye
-     * https://www.php.net/manual/en/function.ctype-alpha.php
-     */
-
-    $letter = mb_strtolower($letter, "UTF-8");
-
-    if (!(ctype_alpha($letter) || strtolower($char) == ("ñ"||"á"||"é"||"í"||"ó"||"ú"||"ü"))) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function promptCaseSensitivity() {
+function promptCaseSensitivity(): bool {
     $caseSensitivity = -1;
-    $wantsCaseSensitivity;
 
     do {
         $caseSensitivity = readline("¿Quieres distinguir entre minúsculas y mayúsculas? [1 = Sí, 0 = No]: ");
@@ -69,13 +51,11 @@ function promptCaseSensitivity() {
         if ($caseSensitivity != 0 && $caseSensitivity != 1) {
             echo "ERROR: Soy un robot, bip-bup; pon 1 o 0.\n";
         } else if ($caseSensitivity == 1) {
-            $wantsCaseSensitivity = true;
+            return true;
         } else {
-            $wantsCaseSensitivity = false;
+            return false;
         }
     } while ($caseSensitivity != 0 && $caseSensitivity != 1);
-
-    return $wantsCaseSensitivity;
 }
 
 function countChar($char, $text, $wantsCaseSensitivity) {
@@ -95,5 +75,47 @@ function countChar($char, $text, $wantsCaseSensitivity) {
 
     return $counter;
 }
+
+/* Restos del intento de hacerlo más completo (por si quiero experimentar más tarde):
+
+function promptLetter() {
+    $char = "";
+    $charIsValid = false;
+
+    do {
+        $char = readline("Introduce la letra que quieres buscar en el texto: ");
+        
+        if ($char === "") {
+            echo "ERROR: No puede estar vacío.\n";
+        } else if (!isSpanishLetter($char)) {
+            echo "ERROR: Tiene que ser un carácter alfabético.\n";
+        } else if (mb_strlen($char, "UTF-8") > 1) {
+            # https://www.php.net/manual/en/function.mb-strlen.php
+            # El strlen() normal da problemas con caracteres especiales porque lo que mira es el número de bytes.
+            echo "ERROR: Tiene que ser una sola letra.\n";
+        } else {
+            $charIsValid = true;
+        }
+    } while (!$charIsValid);
+
+    return $char;
+}
+
+function isSpanishLetter(string $letter) {
+     # strtolower() normal no incluye caracteres especiales, mb_strtolower() sí especificándole la codificación
+     # https://www.php.net/manual/es/function.mb-strtolower.php
+      
+     # ctype_alpha() tampoco los incluye
+     # https://www.php.net/manual/en/function.ctype-alpha.php
+
+    $letter = mb_strtolower($letter, "UTF-8");
+
+    if (!(ctype_alpha($letter) || strtolower($char) == ("ñ"||"á"||"é"||"í"||"ó"||"ú"||"ü"))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+*/
 
 ?>
