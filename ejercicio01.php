@@ -9,7 +9,13 @@ $numbers = [];
 
 promptNumericArray($numbers);
 
-echo "El numero máximo es " . findMaxNumber($numbers) . "\n";
+$maxNumber = findMaxNumber($numbers);
+
+$finalMessage = ($maxNumber == "")
+    ? "No se ha podido determinar un número máximo.\n"
+    : "El numero máximo es " . $maxNumber . "\n";
+
+echo $finalMessage;
 
 # ---------------------
 # Funciones específicas
