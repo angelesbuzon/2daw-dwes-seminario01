@@ -10,10 +10,10 @@
 
 include "./includes/funciones.php";
 
+$text = promptString("Introduce un texto: ");
 $letter = promptLetter("Introduce la letra latina que quieres buscar en el texto: ");
-$text = promptString();
-$cases = promptCaseSensitivity();
-$letterOcurrences = countChar($letter, $text, $cases);
+$isCaseSensitive = promptCaseSensitivity();
+$letterOcurrences = countChar($letter, $text, $isCaseSensitive);
 
 echo "Veces que aparece la letra \"" . $letter . "\" en el texto: " . $letterOcurrences . ".\n";
 
@@ -42,23 +42,7 @@ function promptLetter(string $mensaje): string {
     return $char;
 }
 
-function promptCaseSensitivity(): bool {
-    $caseSensitivity = -1;
-
-    do {
-        $caseSensitivity = readline("¿Quieres distinguir entre minúsculas y mayúsculas? [1 = Sí, 0 = No]: ");
-
-        if ($caseSensitivity != 0 && $caseSensitivity != 1) {
-            echo "ERROR: Soy un robot, bip-bup; pon 1 o 0.\n";
-        } else if ($caseSensitivity == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    } while ($caseSensitivity != 0 && $caseSensitivity != 1);
-}
-
-function countChar($char, $text, $wantsCaseSensitivity) {
+function countChar(string $char, string $text, bool $wantsCaseSensitivity): int {
     $counter = 0;
 
     if (!$wantsCaseSensitivity) {

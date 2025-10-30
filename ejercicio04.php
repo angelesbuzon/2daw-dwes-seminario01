@@ -10,7 +10,7 @@ include "./includes/funciones.php";
 $word = "";
 
 do {
-    $word = promptString();
+    $word = promptString("Introduce una palabra o frase: ");
     if (strlen($word) < 3) echo "ERROR: Tiene que tener 3 caracteres como mínimo.\n";
 } while (strlen($word) < 3);
 

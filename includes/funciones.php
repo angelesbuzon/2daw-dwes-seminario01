@@ -28,14 +28,29 @@ function promptNumbers(&$numbers) {
     } while ($isPrompting);
 }
 
-function promptString() {
+function promptString(string $message): string {
     $str = "";
     do {
-        $str = readline("Introduce una palabra o frase: ");
+        $str = readline($message);
     } while (is_null($str));
 
     return $str;
 }
 
+function promptCaseSensitivity(): bool {
+    $caseSensitivity = -1;
+
+    do {
+        $caseSensitivity = readline("¿Quieres distinguir entre minúsculas y mayúsculas? [1 = Sí, 0 = No]: ");
+
+        if ($caseSensitivity != 0 && $caseSensitivity != 1) {
+            echo "ERROR: Soy un robot, bip-bup; pon 1 o 0.\n";
+        } else if ($caseSensitivity == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    } while ($caseSensitivity != 0 && $caseSensitivity != 1);
+}
 
 ?>
