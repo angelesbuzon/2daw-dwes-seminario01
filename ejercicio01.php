@@ -7,7 +7,7 @@ include "./includes/funciones.php";
 
 $numbers = [];
 
-promptNumbers($numbers);
+promptNumericArray($numbers);
 
 echo "El numero máximo es " . findMaxNumber($numbers) . "\n";
 

@@ -7,7 +7,7 @@ include "./includes/funciones.php";
 
 $numbers = [];
 
-promptNumbers($numbers);
+promptNumericArray($numbers);
 
 echo "La sumatoria de esos números es " . sum($numbers) . "\n";
 

@@ -8,8 +8,26 @@ include "./includes/variables.php";
 # NOTAS:
 # & === se modifica esa misma variable, no una copia específica de la función
 
-function promptNumbers(&$numbers) {
-    
+function promptNumber(string $message): int {
+    $n;
+    $nIsValid = false;
+
+    do {
+        $n = readline($message);
+
+        if (!is_numeric($n)) {
+            echo $inputMismatchNumber;
+        } else if ($n / 10 < 1) {
+            echo $inputOneDigit;
+        } else {
+            $nIsValid = true;
+            return $n;
+        }
+
+    } while ($nIsValid);
+}
+
+function promptNumericArray(&$numbers) {
     $n;
     $isPrompting = true;
 
@@ -27,6 +45,8 @@ function promptNumbers(&$numbers) {
 
     } while ($isPrompting);
 }
+
+
 
 function promptString(string $message): string {
     $str = "";
