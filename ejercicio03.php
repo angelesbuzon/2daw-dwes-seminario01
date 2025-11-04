@@ -5,7 +5,6 @@
 # 1 milla = 1.60934 kilómetros
 
 include './includes/funciones.php';
-include './includes/variables.php';
 
 $n;
 $isPrompting = true;

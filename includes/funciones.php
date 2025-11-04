@@ -16,9 +16,9 @@ function promptNumber(string $message): int {
         $n = readline($message);
 
         if (!is_numeric($n)) {
-            echo $inputMismatchNumber;
+            echo "ERROR: Solo puedes introducir números (usa punto en vez de coma para decimales).\n";
         } else if ($n / 10 < 1) {
-            echo $inputOneDigit;
+            echo "ERROR: El número tiene que ser de más de un dígito.";
         } else {
             $nIsValid = true;
             return $n;
