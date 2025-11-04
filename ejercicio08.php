@@ -5,10 +5,29 @@
 
 include './includes/funciones.php';
 
+$arrayOfNumbers = [];
 $number = promptNumber("Introduce un número de más de un dígito: ");
+$digit;
 
-var_dump($number);
+# Divide el número hasta que me quede sin dígitos
+$numberDivided = $number;
+while ($numberDivided / 10 > 0) {
+    $digit = $numberDivided % 10;
+    array_push($arrayOfNumbers, $digit);
 
+    $numberDivided /= 10;
+    $numberDivided = (int) $numberDivided;
 
+    #var_dump($numberDivided);
+}
+
+#var_dump($arrayOfNumbers);
+
+# Suma
+$sum = array_reduce($arrayOfNumbers, function($accumulator, $n) {
+    return $accumulator + $n;
+}, 0);
+
+echo "La suma de los dígitos de " . $number . " es " . $sum . "\n";
 
 ?>

@@ -1,7 +1,5 @@
 <?php
 
-include "./includes/variables.php";
-
 #
 # Funciones que se usan varias veces en el proyecto
 #
@@ -18,13 +16,15 @@ function promptNumber(string $message): int {
         if (!is_numeric($n)) {
             echo "ERROR: Solo puedes introducir números (usa punto en vez de coma para decimales).\n";
         } else if ($n / 10 < 1) {
-            echo "ERROR: El número tiene que ser de más de un dígito.";
+            echo "ERROR: El número tiene que ser de más de un dígito.\n";
         } else {
             $nIsValid = true;
             return $n;
         }
 
     } while ($nIsValid);
+
+    return $n;
 }
 
 function promptNumericArray(&$numbers) {
