@@ -6,7 +6,7 @@
 include './includes/funciones.php';
 
 $arrayOfNumbers = [];
-$number = promptNumber("Introduce un número de más de un dígito: ");
+$number = promptNumberOfSeveralDigits("Introduce un número de más de un dígito: ");
 $digit;
 
 # Divide el número hasta que me quede sin dígitos

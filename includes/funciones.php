@@ -6,7 +6,7 @@
 # NOTAS:
 # & === se modifica esa misma variable, no una copia específica de la función
 
-function promptNumber(string $message): int {
+function promptNumberOfSeveralDigits(string $message): int {
     $n;
     $nIsValid = false;
 
@@ -17,6 +17,25 @@ function promptNumber(string $message): int {
             echo "ERROR: Solo puedes introducir números (usa punto en vez de coma para decimales).\n";
         } else if ($n / 10 < 1) {
             echo "ERROR: El número tiene que ser de más de un dígito.\n";
+        } else {
+            $nIsValid = true;
+            return $n;
+        }
+
+    } while ($nIsValid);
+
+    return $n;
+}
+
+function promptNumber(string $message): int {
+    $n;
+    $nIsValid = false;
+
+    do {
+        $n = readline($message);
+
+        if (!is_numeric($n)) {
+            echo "ERROR: Solo puedes introducir números (usa punto en vez de coma para decimales).\n";
         } else {
             $nIsValid = true;
             return $n;
