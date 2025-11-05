@@ -46,6 +46,25 @@ function promptNumber(string $message): int {
     return $n;
 }
 
+function promptInteger(string $message): int {
+    $n;
+    $nIsValid = false;
+
+    do {
+        $n = readline($message);
+
+        if (!is_numeric($n) || !gettype($n) == "integer") {
+            echo "ERROR: Solo puedes introducir números enteros.\n";
+        } else {
+            $nIsValid = true;
+            return $n;
+        }
+
+    } while ($nIsValid);
+
+    return $n;
+}
+
 function promptNumericArray(&$numbers) {
     $n;
     $isPrompting = true;
