@@ -13,7 +13,7 @@ $digit;
 $numberDivided = $number;
 while ($numberDivided / 10 > 0) {
     $digit = $numberDivided % 10;
-    array_push($arrayOfNumbers, $digit);
+    $arrayOfNumbers[] = $digit;
 
     $numberDivided /= 10;
     $numberDivided = (int) $numberDivided;
