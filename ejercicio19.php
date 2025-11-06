@@ -1,6 +1,6 @@
 <?php
 
-# WIP Ejercicio 19. Eliminar vocales
+# Ejercicio 19. Eliminar vocales
 # Crea una función que, dada una cadena de texto, elimine todas las vocales de la cadena.
 # Ejemplo: eliminarVocales("Hola Mundo") → "Hl Mnd"
 

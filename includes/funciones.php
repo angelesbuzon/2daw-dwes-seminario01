@@ -6,7 +6,7 @@
 # NOTAS:
 # & === se modifica esa misma variable, no una copia específica de la función
 
-function promptNumberOfSeveralDigits(string $message): int {
+function promptNumberOfSeveralDigits(string $message) {
     $n;
     $nIsValid = false;
 
@@ -27,7 +27,7 @@ function promptNumberOfSeveralDigits(string $message): int {
     return $n;
 }
 
-function promptNumber(string $message): int {
+function promptNumber(string $message) {
     $n;
     $nIsValid = false;
 
@@ -46,7 +46,7 @@ function promptNumber(string $message): int {
     return $n;
 }
 
-function promptInteger(string $message): int {
+function promptInteger(string $message) {
     $n;
     $nIsValid = false;
 
