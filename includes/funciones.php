@@ -90,7 +90,7 @@ function promptString(string $message): string {
     $str = "";
     do {
         $str = readline($message);
-    } while (is_null($str));
+    } while (is_null($str) || $str === "");
 
     return $str;
 }

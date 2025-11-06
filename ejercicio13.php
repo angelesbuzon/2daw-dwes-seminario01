@@ -10,14 +10,17 @@
 include "./includes/funciones.php";
 
 $shortcut = promptString("Introduce el atajo en formato Emmet: ");
+$tag = getHTMLTag($shortcut);
 
-echo "\n" . getHTMLTag($shortcut) . "\n";
+echo "\n" . $tag . "\n";
 
 function getHTMLTag(string $shortcut): string {
     $finalTag = "";
     $selector = "";
     $class = "";
     $id = "";
+
+    echo "Shortcut: " . var_dump($shortcut);
 
     # Distinguir de algun modo los . y los #...
     # $usuario = substr($email, 0, strpos($email, "@"));
@@ -27,9 +30,9 @@ function getHTMLTag(string $shortcut): string {
     $selector = str_replace(("." . $class), "", $shortcut);
     $selector = str_replace(("#" . $id), "", $shortcut);
 
-    echo "Selector " . var_dump($selector);
-    echo "Class " . var_dump($class);
-    echo "ID " . var_dump($id);
+    echo "Selector: " . var_dump($selector);
+    echo "Class: " . var_dump($class);
+    echo "ID: " . var_dump($id);
 
     # Resultado
     if ($class != "" && $id != "") {
